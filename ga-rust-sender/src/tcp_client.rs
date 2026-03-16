@@ -14,7 +14,7 @@ pub fn send_and_wait_for_success<A: ToSocketAddrs>(
             .map_err(|e| format!("Failed to resolve address: {e}"))?
             .next()
             .ok_or_else(|| "No socket address resolved".to_string())?,
-        Duration::from_secs(3),
+        Duration::from_secs(15),
     )
     .map_err(|e| format!("Failed to connect TCP socket: {e}"))?;
 
