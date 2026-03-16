@@ -8,6 +8,7 @@ package wien.dragon.ga.sender.tcp;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import wien.dragon.ga.payload.AlphaPagingPayload;
 import wien.dragon.ga.payload.DataRate;
 import wien.dragon.ga.payload.FunctionCode;
 import wien.dragon.ga.payload.PayloadFactory;
@@ -36,10 +37,10 @@ public class MessageSender {
             usageAndExit();
         }
 
-        var payload = PayloadFactory.createAlphaPagingPayload(targetRic, DataRate.BPS_1200, FunctionCode.CODE_1, message);
+        var payload = new AlphaPagingPayload(targetRic, DataRate.BPS_1200, FunctionCode.CODE_1, message);
         LOG.info("Sending paging message over TCP to RIC '{}' via gateway at {}:{}. Message: '{}'", targetRic, hostname, port, message);
         var tcpSender = new TcpSender(InetAddress.getByName(hostname.trim()), port);
-        tcpSender.sendMessage(payload);
+        tcpSender.sendAlphaMessage(payload);
 
         LOG.info("Shutting down TCP sender. Shutdown might take up to 5 seconds on failed transmission.");
         tcpSender.close();
