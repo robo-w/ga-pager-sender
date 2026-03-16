@@ -30,7 +30,7 @@ public class TcpSender implements AutoCloseable {
     public TcpSender(final InetAddress address, final int port) {
         try {
             socket = new Socket();
-            socket.connect(new InetSocketAddress(address, port), 5000);
+            socket.connect(new InetSocketAddress(address, port), 3000);
         } catch (IOException e) {
             throw new UncheckedIOException("Failed to create TCP sender for pager message.", e);
         }

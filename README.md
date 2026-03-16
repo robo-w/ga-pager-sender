@@ -21,5 +21,5 @@ Example:
 * RIC of the pager to be contacted is "12345"
 * Message is "Test Message"
 
-Then call the program with: `java -jar 192.168.42.100 10300 ga-tcp-sender.jar 12345 "Test Message"`
+Then call the program with: `java -jar ga-tcp-sender.jar 192.168.42.100 10300 12345 "Test Message"`
 
